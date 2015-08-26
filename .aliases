@@ -1,0 +1,47 @@
+# File aliases
+alias p=$PROFILE
+alias a=~/.aliases
+alias i=~/Documents/personal/info/info.md
+ 
+# Directory aliases
+alias w=$WORK
+alias r=$REPOS
+ 
+# Command aliases
+alias P="source $PROFILE"
+ 
+alias d='dirs -v'
+alias 0='pushd +0 > /dev/null ; dirs -v'
+alias 1='pushd +1 > /dev/null ; dirs -v'
+alias 2='pushd +2 > /dev/null ; dirs -v'
+alias 3='pushd +3 > /dev/null ; dirs -v'
+alias 4='pushd +4 > /dev/null ; dirs -v'
+alias 5='pushd +5 > /dev/null ; dirs -v'
+
+# Git aliases
+alias gl='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias gs='git status -s'    # show short-version of git status
+alias gp='git push origin master'
+alias git=hub
+
+alias gistu='gist -u $(cat gist.url)'
+
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias cp='cp -i'
+alias rm='rm -i'
+alias mv='mv -i'
+alias vi='vim '
+alias du='du -hc -d 1 '
+alias ls='ls -F'
+alias lh='ls -lah'          # list all in human-readable form
+alias cd='cd '
+alias rmc='rm -f *class *pyc'
+alias grep='grep --color=auto'
+ 
+alias cpan='sudo cpan'
+alias chmod='sudo chmod'
+alias chown='sudo chown'
+ 
+alias q=/usr/bin/sqlite3

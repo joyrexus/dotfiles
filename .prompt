@@ -1,0 +1,13 @@
+GREEN="\[\033[0;32m\]"
+ORANGE="\[\033[0;33m\]"
+BLUE="\[\033[0;34m\]"
+RESET="\[\033[0m\]"
+ 
+. /usr/local/etc/bash_completion        # tab completion
+. ~/.git-prompt.sh    			        # git-enhanced prompt
+ 
+# git-enhanced prompt powered by `git-prompt.sh`
+PS1="${GREEN}\w${BLUE}\$(__git_ps1 ':%s')${ORANGE}⚡${RESET} " # show git branch
+PS2='> '
+PROFILE=~/.bash_profile
+SHELL=/bin/bash

@@ -1,0 +1,82 @@
+# Bash Functions
+
+# Fix DOS line-endings in-place
+fix() {
+    perl -p -i -e 's/\r$//' $1
+}
+ 
+# Remove leading tabs
+rmtabs() {
+    grep '^    ' $1 | sed 's/^    //'
+}
+ 
+# Manage a simple HTTP server
+# Usage: http start|stop|restart [port]
+http () {
+    local port="${2:-8000}"
+    case $1 in
+        "start")
+            echo "starting http server"
+            nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+            open "http://localhost:${port}/"
+            ;;
+        "stop")
+            echo "stopping http server"
+            kill $(ps aux | grep "python -m SimpleHTTPServer" \
+                          | grep -v grep \
+                          | awk '{print $2}') > /dev/null 
+            ;;
+        "restart")
+            echo "restarting http server"
+            kill $(ps aux | grep "python -m SimpleHTTPServer" \
+                          | grep -v grep | awk '{print $2}') > /dev/null 
+            nohup python -m SimpleHTTPServer >| /tmp/nohup.out &
+            ;;
+        *)
+            echo "need start|stop|restart"
+    esac
+}
+ 
+# Print IP address
+ip () { 
+    ipconfig getifaddr en0 
+}
+ 
+# Make a file executable
+cx () { 
+    chmod +x $1 
+}
+
+# Make a "dated" directory (YEAR-MM-DD)
+mkddir () {
+    mkdir $(date "+%Y-%m-%d")
+}
+ 
+# Move into latest "dated" directory (YEAR-MM-DD)
+cdd () { 
+    cd $(ls -dr 20*/)
+}
+ 
+# Move to directory in $REPORTS starting with given string
+cdr () { 
+    local dir=$(echo $1 | tr 'A-Z' 'a-z')
+    cd $REPORTS/$dir*
+}
+ 
+# Remove directory from svn revision control
+nosvn () {
+    local DIR=${1:-"."}
+    if [ ! -d $DIR ]; then
+        echo "You need to specify a directory";
+        break
+    fi
+    read -e -p "Remove $DIR from revision control? (y/n): " CHOICE
+    if [ $CHOICE == "y" ]; then
+        find $DIR -name ".svn" -print0 | xargs -0 rm -Rf
+    fi
+}
+ 
+# Print repo revision number
+svnrev () {
+    svn info $1 | awk '/Rev:/ { sub(/.*: /, ""); print }'
+}            

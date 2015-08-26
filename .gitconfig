@@ -1,0 +1,14 @@
+[user]
+	name = Jason Voigt
+	email = joyrexus@gmail.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[alias]
+    co = checkout
+    st = status
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true

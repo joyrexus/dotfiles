@@ -1,0 +1,4 @@
+.mode list
+.header ON
+.separator "\t"
+.prompt ">>> " "... "
