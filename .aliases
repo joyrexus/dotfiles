@@ -1,7 +1,7 @@
 # File aliases
 alias p=$PROFILE
 alias a=~/.aliases
-alias i=~/Documents/personal/info/info.md
+alias i=~/Documents/personal/info.md
  
 # Directory aliases
 alias w=$WORK
@@ -44,4 +44,4 @@ alias cpan='sudo cpan'
 alias chmod='sudo chmod'
 alias chown='sudo chown'
  
-alias q=/usr/bin/sqlite3
+alias sql=/usr/bin/sqlite3
